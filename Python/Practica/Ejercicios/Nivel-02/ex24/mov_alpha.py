@@ -1,0 +1,68 @@
+import sys
+import os
+import string
+
+"""
+Escribe un programa que tome un string y lo muestre, moviendo cada letra 1 posición en el alfabeto.
+"z" será "a" y "Z" será "A".
+Las cajas no se verán afectadas.
+La string de salida estará seguida de una nueva línea.
+Si el número de argumentos no es 1, simplemente se mostrará una nueva línea.
+Ejemplos:
+$>python mov_alpha.py “abc”
+bcd
+
+$>python mov_alpha.py “Les stagiaires du staff ne sentent pas toujours tres bon.” | cat -e
+Mft tubhjbjsft ev tubgg of tfoufou qbt upvkpvst usft cpo.$
+
+$>python mov_alpha.py “AkjhZ zLKIJz , 23y “ | cat -e
+BlkiA aMLJKa , 23z $
+
+$>python mov_alpha.py | cat -e
+$
+$>
+
+$>python mov_alpha.py “” | cat -e
+$
+$>
+"""
+
+def get_next_char(char):
+    """
+    Devuelve la siguiente letra en el alfabeto.
+    Cuando llega la final del alfabeto
+    Si no es letra devuelve le mismo carácter
+    """
+    alph = string.ascii_lowercase
+
+    if char in alph:
+        # Convertimos carácter a int
+        idx = alph.index(char)
+        # Calculamos el modulo, para el índice
+        return alph[(idx + 1) % 26]
+
+    else:
+        return char
+
+
+def mov_alpha(text):
+    os.system("cls")
+    res = ""
+
+    for i in text:
+        res += get_next_char(i)
+
+    return res
+
+
+def main():
+    if len(sys.argv) == 2:
+        text = sys.argv[1]
+        print(mov_alpha(text))
+
+    else:
+        print()
+
+
+if __name__ == "__main__":
+    main()

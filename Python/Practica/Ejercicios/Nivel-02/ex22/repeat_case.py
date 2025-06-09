@@ -26,7 +26,7 @@ $
 $>
 """
 
-def get_len(char):
+def get_index(char):
     """
     Calcula el índice del carácter sobre el alfabeto
     Return:
@@ -34,7 +34,7 @@ def get_len(char):
     """
     alph = string.ascii_lowercase
 
-    # Comprobamos si la letra está dentro del alfabeto sinó retornamos 1
+    # Comprobamos si el carácter está dentro del alfabeto sinó retornamos 1
     if char.lower() in alph:
         return alph.index(char.lower()) + 1
 
@@ -55,7 +55,7 @@ def repeat_case(text):
     for i in text:
         # Comprobamos que el carácter sea una letra dentro del alfabeto, sinó 1
         if i.isalpha():
-            res += i * get_len(i)
+            res += i * get_index(i)
 
         else:
             res += i
