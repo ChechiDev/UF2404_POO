@@ -26,6 +26,8 @@ def str_inv_case(text):
     Invierte de mayus a minus y viceversa cada letra en el string dado por arg.
     Los caracteres que no son letras permanecen sin cambios.
     """
+
+    os.system("cls")
     res = ""
 
     for i in text:
