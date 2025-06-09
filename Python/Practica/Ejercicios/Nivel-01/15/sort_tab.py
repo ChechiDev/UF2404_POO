@@ -26,7 +26,8 @@ def main():
     if len(sys.argv) == 2:
 
         try:
-            # Comprobamos con un parámetro de compresión que lo que se introduce son enteros: Ej: 3,2,1
+            # Convertimos a lista/array por compresión el parámetro introducido. Ej: 3,2,1
+            # Si se introduce un string o cadena de texto, lanzará excepción
             arr = [int(x) for x in sys.argv[1].split(",")]
             print(sort_tab(arr))
 
