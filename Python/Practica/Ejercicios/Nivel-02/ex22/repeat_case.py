@@ -27,6 +27,11 @@ $>
 """
 
 def get_len(char):
+    """
+    Calcula el índice del carácter sobre el alfabeto
+    Return:
+        Int: Index
+    """
     alph = string.ascii_lowercase
 
     # Comprobamos si la letra está dentro del alfabeto sinó retornamos 1
@@ -38,6 +43,10 @@ def get_len(char):
 
 
 def repeat_case(text):
+    """
+    Devuelve un nuevo string donde cada carácter se repite (n) veces * su indice en el alfabeto.
+    Si no está en el alfabeto, se mantiene carácter pero no se repite.
+    """
     os.system("cls")
 
     # Guardamos resultado:
@@ -60,7 +69,9 @@ def main():
         print(repeat_case(text))
 
     else:
-        print("Uso: python repeat_case.py <texto>")
+        # Línea en blanco si no hay exactamente un arg.
+        # Supongo que esto es lo que pide el ex. porque no entiendo muy bien.
+        print()
 
 
 if __name__ == "__main__":
