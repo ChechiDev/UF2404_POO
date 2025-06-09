@@ -18,6 +18,7 @@ def sort_tab(arr):
     Return:
         list: Lista de enteros ordenada.
     """
+    os.system("cls")
     return sorted(arr)
 
 
@@ -28,7 +29,6 @@ def main():
             # Comprobamos con un parámetro de compresión que lo que se introduce son enteros: Ej: 3,2,1
             arr = [int(x) for x in sys.argv[1].split(",")]
             print(sort_tab(arr))
-
 
         except ValueError:
             print("Error: El argumento debe ser una lista de enteros.")
