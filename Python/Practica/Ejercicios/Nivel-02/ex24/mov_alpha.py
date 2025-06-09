@@ -33,13 +33,19 @@ def get_next_char(char):
     Cuando llega la final del alfabeto
     Si no es letra devuelve le mismo carácter
     """
-    alph = string.ascii_lowercase
+    alph_low = string.ascii_lowercase
+    alph_up = string.ascii_uppercase
 
-    if char in alph:
+    if char in alph_low:
         # Convertimos carácter a int
-        idx = alph.index(char)
+        idx = alph_low.index(char)
         # Calculamos el modulo, para el índice
-        return alph[(idx + 1) % 26]
+        return alph_low[(idx + 1) % 26]
+
+    # Lógica para las mayúsculas
+    elif char in alph_up:
+        idx = alph_up.index(char)
+        return alph_up[(idx + 1) % 26]
 
     else:
         return char
