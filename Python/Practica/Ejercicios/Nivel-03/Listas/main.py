@@ -7,12 +7,12 @@ import sys
 
 Escribe un programa que tendrá una función llamada `increase_library` que recibirá un argumento: `new_book`
 
-Dentro de la función `increase_library` se debe leer un listado de títulos de libros que el usuario ya ha leído. Esta lista se encuentra almacenada en un archivo de texto `books.txt` 
+Dentro de la función `increase_library` se debe leer un listado de títulos de libros que el usuario ya ha leído. Esta lista se encuentra almacenada en un archivo de texto `books.txt`
 
 [books.txt](attachment:69849629-b9ac-4615-98c4-369205d6582b:books.txt)
 
 - Para leer el archivo `books.txt` utiliza la función por defecto `open()`
-- Convierte el archivo que acabas de leer a una lista utilizando la siguiente sentencia: 
+- Convierte el archivo que acabas de leer a una lista utilizando la siguiente sentencia:
 `books = local_file.read().splitlines()`
 - Termina la operación de lectura del archivo con la función `local_file.close()`
 
@@ -36,24 +36,24 @@ La biblioteca de libros leídos es:
 `El primer libro que he leído es: "Don Quijote de la Mancha"`
 """
 
+def load_book():
+    data_src = r".\data\books.txt"
+
+    with open(data_src) as f:
+        books = f.read().splitlines()
+
+
 def first_book_read(b):
     pass
 
 
 def increase_library(new_book):
-    local_file = r"./DATA/books.txt"
-    
-    b = open(local_file).read().splitlines()
-    b.append(new_book)
-
-    print(b)
-    return
+    pass
 
 
 def main():
     if len(sys.argv) == 1:
-        new_book = input("Introduce el nombre del nuevo libro: ")    
-        increase_library(new_book)
+        new_book = input("Introduce el nombre del nuevo libro: ")
 
 
 if __name__=="__main__":
