@@ -1,4 +1,5 @@
 import sys
+import os
 
 """
 # Caso Práctico -  Listas
@@ -36,24 +37,58 @@ La biblioteca de libros leídos es:
 `El primer libro que he leído es: "Don Quijote de la Mancha"`
 """
 
-def load_book():
-    data_src = r".\data\books.txt"
+# Creamos una variable global que contenga la ruta del archivo, con la data
+data_src = r".\data\books.txt"
 
-    with open(data_src) as f:
+def load_book_data():
+    """
+    Función recursiva que carga los datos de los libros.
+    Return:
+        List: Lista con los libros existentes cargados.
+    """
+
+    # Cargamos la lista de libros existente en el archivo books.txt:
+    with open(data_src, "r") as f:
         books = f.read().splitlines()
+        f.close()
+
+    return books
 
 
-def first_book_read(b):
-    pass
+def increase_library(books, new_book):
+    """
+    Añade un nuevo libro a la lista de libros y lo guarda en el archivo de texto.
+    Return:
+        List: Lista actualizada con los libros
+    """
 
+    # Agregamos el nuevo libro a la lista y retornamos lista actualizada:
+    books.append(new_book)
 
-def increase_library(new_book):
-    pass
+    # Agregamos el nuevo libro al archivo .txt con la data
+    with open(data_src, "a") as f:
+        f.write(f"\n{new_book}")
+        f.close()
+
+    return books
 
 
 def main():
+    os.system("cls")
+
+    # Cargamos el listado de libros:
+    books = load_book_data()
+
     if len(sys.argv) == 1:
         new_book = input("Introduce el nombre del nuevo libro: ")
+
+    # Si se introduce por terminal, recogemos:
+    else:
+        new_book = sys.argv[1]
+
+    # Agregramos el nuevo libro a la lista existente
+    books = increase_library(books, new_book)
+    print(books)
 
 
 if __name__=="__main__":
