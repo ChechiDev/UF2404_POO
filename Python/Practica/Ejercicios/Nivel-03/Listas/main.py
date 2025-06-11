@@ -88,7 +88,13 @@ def main():
 
     # Agregramos el nuevo libro a la lista existente
     books = increase_library(books, new_book)
-    print(books)
+
+    os.system("cls")
+    # Mostramos el listado de libros:
+    print("Listado de libros leídos: \n")
+
+    for idx, book in enumerate(books, start=1):
+        print(f"{idx}. {book}")
 
 
 if __name__=="__main__":
