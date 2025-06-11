@@ -73,6 +73,20 @@ def increase_library(books, new_book):
     return books
 
 
+def first_book_read(books):
+    """
+    Función recursiva para mostrar el último libro leído
+    Return:
+        str: El nombre del primer libro leído
+    """
+
+    if books:
+        return books[0]
+
+    else:
+        return None
+
+
 def main():
     os.system("cls")
 
@@ -99,8 +113,9 @@ def main():
     print()
 
     # Agregamos la lógica para mostrar el primer y último libro leído:
-    print(f"El primer libro leído es: {books[0]}")
-    print(f"El último libro leído es: {books[len(books) - 1]}")
+    first_book = first_book_read(books)
+    if first_book:
+        print(f"El primer libro leído es: {first_book}")
 
     print()
 
