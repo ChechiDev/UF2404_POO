@@ -48,7 +48,7 @@ def load_book_data():
     """
 
     # Cargamos la lista de libros existente en el archivo books.txt:
-    with open(data_src, "r") as f:
+    with open(data_src, "r", encoding="UTF-8") as f:
         books = f.read().splitlines()
         f.close()
 
@@ -66,7 +66,7 @@ def increase_library(books, new_book):
     books.append(new_book)
 
     # Agregamos el nuevo libro al archivo .txt con la data
-    with open(data_src, "a") as f:
+    with open(data_src, "a", encoding="UTF-8") as f:
         f.write(f"\n{new_book}")
         f.close()
 
@@ -95,6 +95,14 @@ def main():
 
     for idx, book in enumerate(books, start=1):
         print(f"{idx}. {book}")
+
+    print()
+
+    # Agregamos la lógica para mostrar el primer y último libro leído:
+    print(f"El primer libro leído es: {books[0]}")
+    print(f"El último libro leído es: {books[len(books) - 1]}")
+
+    print()
 
 
 if __name__=="__main__":
