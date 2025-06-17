@@ -1,3 +1,6 @@
+import os
+import random
+import platform
 
 
 """
@@ -34,17 +37,50 @@ El juego debe ser completamente funcional, visual y ejecutable desde consola.
 - Historial de partidas
 """
 
+# Variabless globales para configuración del juego:
+ROWS = 6
+COLUMNS = 7
 
 
+def clear_terminal():
+    """
+    Limpia la terminal
+    """
+    if platform.system() == "Windows":
+        os.system("cls")
 
+    else:
+        os.system("clear")
+
+
+def create_board(x, y):
+    matrix = []
+
+    for i in range(x):
+        row = []
+        for j in range(y):
+            if (i == 0):
+                row.append(str(j))
+
+            else:
+                row.append(".")
+
+        matrix.append(row)
+
+    # Comprobamos matriz
+    print(type(matrix))
+
+    # Mostramos contenido de la lista 2D:
+    for row in matrix:
+        print(" ".join(row))
 
 
 def game():
     """
     Lógica principal del juego
     """
-    pass
-
+    clear_terminal()
+    board = create_board(ROWS, COLUMNS)
 
 if __name__ == "__main__":
     game()
