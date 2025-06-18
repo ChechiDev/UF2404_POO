@@ -50,9 +50,10 @@ Part 6: Flux del joc »Mostrar el tauler després de cada torn »Mostrar missatg
 # Variabless globales para configuración del juego:
 ROWS = 6
 COLUMNS = 7
+WIDTH = 45 # Parámetro global usado para marcar un ancho y poder centrar el menú
+PATTERN = "*" # Parámetro global usado renderizar el patrón visual del menú
 
-
-def clear_terminal():
+def clear_terminal() -> None:
     """
     Limpia la terminal
     """
@@ -63,7 +64,62 @@ def clear_terminal():
         os.system("clear")
 
 
-def create_board(x: int, y: int) -> list:
+def menu_header(width, pattern):
+
+    fill_space = " "
+
+    print(pattern * width)
+    print("Connect 4: The ultimate game!".center(width, fill_space))
+    print(pattern * width)
+
+
+def menu_footer(width: int):
+    pass
+
+
+
+def main_menu(width):
+    """
+    Configuración del landing menu
+    """
+    clear_terminal()
+    menu_header(width, PATTERN)
+
+    options = ["One player vs CPU", "Two players (comming soon)"]
+
+    for idx, opt in enumerate(options):
+        print(f"{idx + 1}. {opt}")
+
+    selection = input("\n\nPlease, select an option game: ").strip()
+
+    while True:
+        if selection == "1":
+            print("One player")
+            input()
+        elif selection == "2":
+            print("Two player")
+            input()
+        else:
+            print("Invalid option...")
+            input()
+
+# def choose_difficulty(player_name: str, width: int):
+#     """
+#     Pide al usuario que elija dificultad
+
+#     """
+#     clear_terminal()
+#     menu_header(width)
+
+    while True:
+        nivel = input(f"{player_name} elige la dificultad [easy] [normal] [hard]: ").strip().lower()
+        if nivel in ["easy", "normal", "hard"]:
+            return nivel
+
+        print("➜ [ERROR] Nivel incorrecto")
+
+
+def create_board(x: int, y: int, width: int) -> list:
     """
     Creates a board game grid\n
     Arg1 x: int: ROWS \n
@@ -73,7 +129,7 @@ def create_board(x: int, y: int) -> list:
     board = []
 
     # Generamos los números del header
-    print("  ".join(str(n) for n in range(y)))
+    print("  ".join(str(n) for n in range(y)).center(width))
 
     # Generamos el board de juego.
     for i in range(x):
@@ -87,7 +143,7 @@ def create_board(x: int, y: int) -> list:
     return board
 
 
-def print_board(board: list) -> list:
+def print_board(board: list, width) -> None:
     """
     Muestra el tablero por pantalla\n
     Arg: 2D List\n
@@ -96,18 +152,17 @@ def print_board(board: list) -> list:
 
     # print(type(list))
     for row in board:
-        print(" ".join(row))
+        print(" ".join(row).center(width))
 
 
 def game():
     """
     Lógica principal del juego
     """
-    # Limpiamos terminal:
-    clear_terminal()
 
-    board = create_board(ROWS, COLUMNS)
-    print_board(board)
+    main_menu(WIDTH)
+    # board = create_board(ROWS, COLUMNS, width)
+    # print_board(board, width)
 
 
 if __name__ == "__main__":
