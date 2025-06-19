@@ -1,9 +1,6 @@
 import random as rand
 from utils import Utils
 
-ROWS = 6
-COLUMNS = 7
-
 class Board:
     """
     Class that represents the Connect Four game board.\n
@@ -41,7 +38,10 @@ class Board:
 
 
 if __name__ == "__main__":
+
     Utils.clear_terminal()
+    ROWS = 6
+    COLUMNS = 7
 
     board = Board(ROWS, COLUMNS)
     board.print_board()
