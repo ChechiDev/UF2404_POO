@@ -51,8 +51,12 @@ Part 6: Flux del joc »Mostrar el tauler després de cada torn »Mostrar missatg
 ROWS = 6
 COLUMNS = 7
 WIDTH = 45 # Parámetro global usado para marcar un ancho y poder centrar el menú
-PATTERN = "*" # Parámetro global usado renderizar el patrón visual del menú
+PATTERN = "=" # Parámetro global usado renderizar el patrón visual del menú
 
+
+"""
+TERMINAL
+"""
 def clear_terminal() -> None:
     """
     Limpia la terminal
@@ -63,50 +67,78 @@ def clear_terminal() -> None:
     else:
         os.system("clear")
 
+"""
+MENU CONFIG SECTION
+"""
+def menu_separator(width: int, pattern: str) -> None:
+    """
+    Renders a menu pattern
+    """
+    print(f"{pattern * width}")
 
-def menu_header(width, pattern):
-
+def menu_header(width: int, pattern: str) -> None:
+    """
+    Landing menu config
+    """
     fill_space = " "
-
-    print(pattern * width)
+    menu_separator(width, pattern)
     print("Connect 4: The ultimate game!".center(width, fill_space))
-    print(pattern * width)
+    menu_separator(width, pattern)
 
+def menu_footer(width, pattern):
+    """
+    Renders a footer menu
+    """
+    print(f"\n\n{pattern * width}")
 
-def menu_footer(width: int):
-    pass
-
-
-
-def main_menu(width):
+def main_menu(width: int, pattern: str) -> None:
     """
     Configuración del landing menu
     """
     clear_terminal()
-    menu_header(width, PATTERN)
+    menu_header(width, pattern)
 
-    options = ["One player vs CPU", "Two players (comming soon)"]
+    options = [
+        "One player vs CPU",
+        "Two players (comming soon)"
+        ]
 
     for idx, opt in enumerate(options):
         print(f"{idx + 1}. {opt}")
 
-    selection = input("\n\nPlease, select an option game: ").strip()
+
+    menu_footer(width, pattern)
+    selection = input("Please, select an option: ").strip()
 
     while True:
         if selection == "1":
             print("One player")
-            input()
+            choose_name(width, pattern)
+
         elif selection == "2":
             print("Two player")
             input()
+
         else:
             print("Invalid option...")
             input()
+            main_menu(WIDTH, PATTERN)
+
+def choose_name(width: int, pattern: str) -> str:
+    """
+    Pide al usuario que elija su nombre
+    """
+    clear_terminal()
+    menu_header(width, pattern)
+    print("Please, insert your nickname")
+    menu_footer(width, pattern)
+    nickname = input("Nickname: ")
+
+    return nickname
 
 # def choose_difficulty(player_name: str, width: int):
 #     """
 #     Pide al usuario que elija dificultad
-
 #     """
 #     clear_terminal()
 #     menu_header(width)
@@ -118,7 +150,9 @@ def main_menu(width):
 
         print("➜ [ERROR] Nivel incorrecto")
 
-
+"""
+BOARD GAME SECTION
+"""
 def create_board(x: int, y: int, width: int) -> list:
     """
     Creates a board game grid\n
@@ -142,8 +176,7 @@ def create_board(x: int, y: int, width: int) -> list:
     # print(type(board))
     return board
 
-
-def print_board(board: list, width) -> None:
+def print_board(board: list, width: int) -> None:
     """
     Muestra el tablero por pantalla\n
     Arg: 2D List\n
@@ -155,14 +188,20 @@ def print_board(board: list, width) -> None:
         print(" ".join(row).center(width))
 
 
+"""
+GAME CONFIG SECTION
+"""
 def game():
     """
     Lógica principal del juego
     """
 
-    main_menu(WIDTH)
+    main_menu(WIDTH, PATTERN)
     # board = create_board(ROWS, COLUMNS, width)
     # print_board(board, width)
+
+    player_name = choose_name(WIDTH, PATTERN)
+    # difficulty = choose_difficulty(player_name, WIDTH)
 
 
 if __name__ == "__main__":
