@@ -17,12 +17,16 @@ class Board:
         self._empty_cell = ".   "
         self.create_board()
 
+
     def create_board(self) -> list:
         """
         Creates a board game grid\n
-        Arg1 x: int: ROWS \n
-        Arg2 y: int: COLUMNS\n
-        Return: List: 2D array with the board generated
+        Args:
+            x (int): ROWS
+            y (int): COLUMNS
+
+        Returns:
+            (list): 2D array with the board generated
         """
         # Generamos el board de juego.
         for i in range(self._row):
@@ -36,12 +40,16 @@ class Board:
         return self._board
 
 
-    def print_board(self, board: list):
+    def print_board(self):
         """
         Muestra el tablero por pantalla\n
-        Arg: 2D List\n
-        Return: List: 2D array rendered in CMD.
+        Args:
+            (list): 2D List
+
+        Returns:
+            (list): 2D array rendered in CMD.
         """
+        Utils.clear_terminal()
         # Board header:
         print("   ".join(str(n) for n in range(self._col)))
         # Board
@@ -50,44 +58,58 @@ class Board:
 
 
     def is_valid_column(self, col: int) -> bool:
+        """
+        Checks if a column is valid for inserting a piece.
+        Args:
+            col (int): The index of the column to check.
 
+        Returns:
+            (bool): True if the column is valid for a move, False otherwise.
+        """
         if col < 0 or col >= self._col:
             return False
-        
+
         if self._board[0][col] == self._empty_cell:
             return True
-        
+
         else:
             return False
 
 
+    def get_valid_columns(self) -> list:
+        """
+        Returns a list of valid columns where a piece can be played.
+
+        Uses the is_valid_column method to filter and collect all columns
+        that are available for a move.
+
+        Returns:
+            list: A list of column indices (int) that are valid for a move.
+        """
+        valid_columns = []
+        for col in range(self._col):
+            if self.is_valid_column(col):
+                valid_columns.append(col)
+
+        return valid_columns
+
+
     def insert_piece(self, col: int, piece: str) -> bool:
-        
+        """
+        Inserts a piece into the specified column of the board.
+
+        Args:
+            col (int):
+            piece (str):
+
+        Returns:
+            (bool): True if the piece was successfully inserted, False if the column is full.
+        """
         Utils.clear_terminal()
         for row in reversed(range(self._row)):
             if self._board[row][col] == self._empty_cell:
                 self._board[row][col] = piece
                 return True
 
+        print(self._board)
         return False  # La columna está llena
-
-
-if __name__ == "__main__":
-
-    Utils.clear_terminal()
-    ROWS = 6
-    COLUMNS = 7
-
-    board = Board(ROWS, COLUMNS)
-    board.print_board()
-
-    # Preguntamos al user por la columna que quiere
-    user_move = Utils.valid_column_num()
-    piece = "X "
-
-    # Comprobamos si la columna es válida y colocamos la ficha
-    while True:
-        if board.is_valid_column(user_move):
-            board.insert_piece(user_move, "X  ")
-            board.print_board()
-            break
