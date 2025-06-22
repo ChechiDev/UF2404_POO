@@ -112,7 +112,7 @@ class Utils:
             print(f"({row}, {col}), row está fuera del board")
             return 0
 
-        elif col < 0 or col >= len(board):
+        if col < 0 or col >= len(board[0]):
             print(f"({row}, {col}), col está fuera del board")
             return 0
 
@@ -122,29 +122,21 @@ class Utils:
             return 0
 
 
+        # Comprobamos si la casilla es la pieza que buscamos:
+        if board[row][col] != piece:
+            return 0
 
+        checked.append((row, col))
+        print(f"Visitado: {row}, {col} => checked {checked}")
+        count = 1
 
+        # Recursividad en las 4 direcciones:
+        count += Utils.flood_fill_algorithm(board, row + 1, col, piece, checked)
+        count += Utils.flood_fill_algorithm(board, row - 1, col, piece, checked)
+        count += Utils.flood_fill_algorithm(board, row, col + 1, piece, checked)
+        count += Utils.flood_fill_algorithm(board, row, col - 1, piece, checked)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return count
 
 
 # Probando & debug flood fill algorithm
@@ -167,8 +159,10 @@ if __name__ == "__main__":
     print()
 
     row_inicio = 0
-    col_inicio = 2
+    col_inicio = 4
     piece = "X"
+    checked = []
 
-    result = Utils.flood_fill_algorithm(board, row_inicio, col_inicio, piece)
+    result = Utils.flood_fill_algorithm(board, row_inicio, col_inicio, piece, checked)
     print(f"Fichas conectadas: {result}")
+    print(f"posiciones visitadas: {checked}")
