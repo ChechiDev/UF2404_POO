@@ -1,5 +1,5 @@
 import random as rand
-from utils import Utils
+# from utils import Utils
 
 
 class Board:
@@ -36,7 +36,6 @@ class Board:
 
             self._board.append(row)
 
-        # print(type(board))
         return self._board
 
 
@@ -49,6 +48,7 @@ class Board:
         Returns:
             (list): 2D array rendered in CMD.
         """
+        from utils import Utils
         Utils.clear_terminal()
         # Board header:
         print("   ".join(str(n) for n in range(self._col)))
@@ -105,6 +105,7 @@ class Board:
         Returns:
             (bool): True if the piece was successfully inserted, False if the column is full.
         """
+        from utils import Utils
         Utils.clear_terminal()
         for row in reversed(range(self._row)):
             if self._board[row][col] == self._empty_cell:

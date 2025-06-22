@@ -1,6 +1,7 @@
 import os
 import re
 import platform as plat
+from board import Board
 
 
 
@@ -47,20 +48,47 @@ class Utils:
             print("➜ [ERROR] Nivel incorrecto")
 
 
-    def copy_board(board: list) -> list:
-        pass
+    def check_winner(board, piece):
+        grid = board._board
+        rows = board._row
+        cols = board._col
 
+        # Checkeamos Horizontal
+        for r in range(rows):
+            for c in range(cols - 3):
+                if(
+                    grid[r][c] == piece and
+                    grid[r][c + 1] == piece and
+                    grid[r][c + 2] == piece and
+                    grid[r][c + 3] == piece
+                ):
+                    return True
 
-    def valid_column(board, column):
-        """
-        Devuelve True si la columna es válida (entre 0 y 6 y no está llena)
-        """
-        pass
+        # Vertical
+        for c in range(cols):
+            for r in range(rows - 3):
+                if (grid[r][c] == piece and
+                    grid[r + 1][c] == piece and
+                    grid[r + 2][c] == piece and
+                    grid[r + 3][c] == piece):
+                    return True
 
+        # Diagonal positiva
+        for r in range(rows - 3):
+            for c in range(cols - 3):
+                if (grid[r][c] == piece and
+                    grid[r + 1][c + 1] == piece and
+                    grid[r + 2][c + 2] == piece and
+                    grid[r + 3][c + 3] == piece):
+                    return True
 
-    def get_valid_columns(board):
-        """
-        Devuelve una lista de columnas válidas para jugar
-        ➜ Utiliza valid_column para filtrar las columnas disponibles
-        """
-        pass
+        # Diagonal negativa
+        for r in range(3, rows):
+            for c in range(cols - 3):
+                if (grid[r][c] == piece and
+                    grid[r - 1][c + 1] == piece and
+                    grid[r - 2][c + 2] == piece and
+                    grid[r - 3][c + 3] == piece):
+                    return True
+
+        return False

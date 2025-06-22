@@ -1,6 +1,7 @@
 from utils import Utils
 from board import Board
-from main import Menu
+from time import sleep
+# from main import Menu
 import random
 
 
@@ -8,11 +9,11 @@ class Logic:
     def __init__(self, board):
         self._board = board
 
-        board = Board()
 
     def easy(self, board):
-        # col = Utils.valid_column_num(board)
-        pass
+        valid_col = self._board.get_valid_columns()
+        sleep(2)
+        return random.choice(valid_col)
 
 
     def normal(slef):
