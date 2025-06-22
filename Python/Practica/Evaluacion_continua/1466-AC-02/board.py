@@ -1,4 +1,3 @@
-import random as rand
 # from utils import Utils
 
 
@@ -50,8 +49,9 @@ class Board:
         """
         from utils import Utils
         Utils.clear_terminal()
+
         # Board header:
-        print("   ".join(str(n) for n in range(self._col)))
+        print("   ".join(str(n + 1) for n in range(self._col)))
         # Board
         for row in self._board:
             print("".join(row))
@@ -87,6 +87,7 @@ class Board:
             list: A list of column indices (int) that are valid for a move.
         """
         valid_columns = []
+
         for col in range(self._col):
             if self.is_valid_column(col):
                 valid_columns.append(col)
@@ -107,6 +108,7 @@ class Board:
         """
         from utils import Utils
         Utils.clear_terminal()
+
         for row in reversed(range(self._row)):
             if self._board[row][col] == self._empty_cell:
                 self._board[row][col] = piece

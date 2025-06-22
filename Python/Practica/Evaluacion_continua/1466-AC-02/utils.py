@@ -16,16 +16,18 @@ class Utils:
 
 
     def valid_column_num(player_name=None, piece=None) -> int:
-        pattern = r"^[0-6]$"
+        pattern = r"^[1-7]$"
 
         while True:
             # Utils.clear_terminal()
-            value = input(f"\n{player_name} (X) Elige columna (0-6): ")
+            value = input(f"\n{player_name} (X) Elige columna (1-7): ")
             if re.match(pattern, value):
-                return int(value)
+                return int(value) - 1
 
             else:
+                print("Error!")
                 continue
+
 
     @staticmethod
     def choose_name() -> str:
@@ -92,3 +94,81 @@ class Utils:
                     return True
 
         return False
+
+
+    def flood_fill_algorithm(board, row, col, piece, checked=None):
+        """
+
+        """
+
+        # Si es la primera vez creamos una lista con los visitados:
+        if checked is None:
+            checked = []
+
+            print(f"Empieza flood fill en {row}, {col}")
+
+        # Comprobamos si la posición está fuera del board:
+        if row < 0 or row >= len(board):
+            print(f"({row}, {col}), row está fuera del board")
+            return 0
+
+        elif col < 0 or col >= len(board):
+            print(f"({row}, {col}), col está fuera del board")
+            return 0
+
+        # Comprobamos si se ha checkeado la casilla:
+        if (row, col) in checked:
+            print(f"({row}, {col}, checked)")
+            return 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Probando & debug flood fill algorithm
+if __name__ == "__main__":
+
+    Utils.clear_terminal()
+
+    board = [
+        [".", ".", ".", "X", "X", ".", ".", ],
+        [".", ".", ".", "X", ".", ".", ".", ],
+        [".", ".", "X", "X", ".", ".", ".", ],
+        [".", ".", ".", ".", ".", ".", ".", ],
+        [".", ".", ".", ".", ".", ".", ".", ],
+        [".", ".", ".", ".", ".", ".", ".", ],
+    ]
+
+    # printamos el board:
+    for r in board:
+        print(" ".join(r))
+    print()
+
+    row_inicio = 0
+    col_inicio = 2
+    piece = "X"
+
+    result = Utils.flood_fill_algorithm(board, row_inicio, col_inicio, piece)
+    print(f"Fichas conectadas: {result}")
