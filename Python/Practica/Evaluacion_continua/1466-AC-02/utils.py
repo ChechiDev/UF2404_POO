@@ -8,6 +8,9 @@ from board import Board
 class Utils:
     @staticmethod
     def clear_terminal():
+        """
+        Clears the terminal screen based on the user's operating system.
+        """
         if plat.system() == "Windows":
             os.system("cls")
 
@@ -16,6 +19,16 @@ class Utils:
 
 
     def valid_column_num(player_name=None, piece=None) -> int:
+        """
+        Asks the user to select a valid column number for their move.
+
+        Args:
+            player_name (str, optional): The name of the player.
+            piece (str, optional): The piece symbol for the player.
+
+        Returns:
+            int: The selected valid column number (1-7).
+        """
         pattern = r"^[1-7]$"
 
         while True:
@@ -32,7 +45,10 @@ class Utils:
     @staticmethod
     def choose_name() -> str:
         """
-        Asks the user for their name and returns it.
+        Asks the user to enter their name.
+
+        Returns:
+            str: The entered player name.
         """
         name = input("\nPlease, enter your name: ").strip()
 
@@ -41,6 +57,15 @@ class Utils:
 
     @staticmethod
     def choose_difficulty(name):
+        """
+        Asks the user to select a difficulty level for the game.
+
+        Args:
+            name (str): The name of the player.
+
+        Returns:
+            str: The selected difficulty level ('easy', 'normal', or 'hard').
+        """
         while True:
             nivel = input(f"{name} elige la dificultad [easy] [normal] [hard]: ").strip().lower()
 
@@ -50,7 +75,18 @@ class Utils:
             print("➜ [ERROR] Nivel incorrecto")
 
 
-    def check_winner(board, piece):
+    def check_winner(board: list, piece: str) -> bool:
+        """
+        Checks if the specified piece has achieved a winning condition (four in a row)
+        horizontally, vertically, or diagonally on the board.
+
+        Args:
+            board (list): The current game board as a 2D list.
+            piece (str): The piece symbol to check for a win.
+
+        Returns:
+            bool: True if the piece has won, False otherwise.
+        """
         grid = board._board
         rows = board._row
         cols = board._col
@@ -98,27 +134,32 @@ class Utils:
 
     def flood_fill_algorithm(board, row, col, piece, checked=None):
         """
+        Performs a flood fill algorithm starting from the specified cell to find connected pieces.
 
+        Args:
+            board (list): The current game board as a 2D list.
+            row (int): The starting row index.
+            col (int): The starting column index.
+            piece (str): The piece symbol to search for.
+            checked (set, optional): Set of already checked positions.
+
+        Returns:
+            int: The number of connected pieces found.
         """
 
         # Si es la primera vez creamos una lista con los visitados:
         if checked is None:
             checked = []
 
-            print(f"Empieza flood fill en {row}, {col}")
-
         # Comprobamos si la posición está fuera del board:
         if row < 0 or row >= len(board):
-            print(f"({row}, {col}), row está fuera del board")
             return 0
 
         if col < 0 or col >= len(board[0]):
-            print(f"({row}, {col}), col está fuera del board")
             return 0
 
         # Comprobamos si se ha checkeado la casilla:
         if (row, col) in checked:
-            print(f"({row}, {col}, checked)")
             return 0
 
 
@@ -127,7 +168,6 @@ class Utils:
             return 0
 
         checked.append((row, col))
-        print(f"Visitado: {row}, {col} => checked {checked}")
         count = 1
 
         # Recursividad en las 4 direcciones:
@@ -137,32 +177,3 @@ class Utils:
         count += Utils.flood_fill_algorithm(board, row, col - 1, piece, checked)
 
         return count
-
-
-# Probando & debug flood fill algorithm
-if __name__ == "__main__":
-
-    Utils.clear_terminal()
-
-    board = [
-        [".", ".", ".", "X", "X", ".", ".", ],
-        [".", ".", ".", "X", ".", ".", ".", ],
-        [".", ".", "X", "X", ".", ".", ".", ],
-        [".", ".", ".", ".", ".", ".", ".", ],
-        [".", ".", ".", ".", ".", ".", ".", ],
-        [".", ".", ".", ".", ".", ".", ".", ],
-    ]
-
-    # printamos el board:
-    for r in board:
-        print(" ".join(r))
-    print()
-
-    row_inicio = 0
-    col_inicio = 4
-    piece = "X"
-    checked = []
-
-    result = Utils.flood_fill_algorithm(board, row_inicio, col_inicio, piece, checked)
-    print(f"Fichas conectadas: {result}")
-    print(f"posiciones visitadas: {checked}")

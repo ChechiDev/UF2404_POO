@@ -15,7 +15,15 @@ class HumanPlayer(Player):
 
 
     def play(self, board):
+        """
+        Asks the player to select a valid column for their move.
 
+        Args:
+            board (Board): The current game board.
+
+        Returns:
+            int: The selected valid column index.
+        """
         while True:
             col = Utils.valid_column_num(self._name, self._piece)
 
@@ -33,14 +41,38 @@ class CPUPlayer(Player):
 
 
     def play_easy(self, board, piece):
+        """
+        CPU's move in easy mode by selecting a random valid column.
+
+        Args:
+            board (Board): The current game board.
+            piece (str): The symbol representing the CPU's piece.
+
+        Returns:
+            int: The selected column index for the move.
+        """
         logic = Logic(board)
         col = logic.easy(board)
 
         return col
 
 
-    def play_normal(self, board, piece):
-        pass
+    def play_normal(self, board, player_piece, cpu_piece):
+        """
+        CPU's move in normal mode by evaluating possible moves and selecting the best option.
+
+        Args:
+            board (Board): The current game board.
+            player_piece (str): The symbol representing the human player's piece.
+            cpu_piece (str): The symbol representing the CPU's piece.
+
+        Returns:
+            int: The selected column index for the move.
+        """
+        logic = Logic(board)
+        col = logic.normal(player_piece, cpu_piece)
+
+        return col
 
 
     def play_hard(self, board, piece):

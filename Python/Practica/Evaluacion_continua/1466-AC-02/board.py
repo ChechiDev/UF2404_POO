@@ -57,6 +57,16 @@ class Board:
             print("".join(row))
 
 
+    def get_board_copy(self):
+        """
+        Returns a copy of the current game board.
+
+        Returns:
+            list: A new list of lists representing the current state of the board.
+        """
+        return [row[:] for row in self._board]
+
+
     def is_valid_column(self, col: int) -> bool:
         """
         Checks if a column is valid for inserting a piece.
@@ -93,6 +103,23 @@ class Board:
                 valid_columns.append(col)
 
         return valid_columns
+
+
+    def get_available_row(self, col: int) -> int:
+        """
+        Returns the lowest row index in the specified column where a piece can be placed.
+
+        Args:
+            col (int): The column index to check for available space.
+
+        Returns:
+            int: The row index where the piece can be inserted, or -1 if the column is full.
+        """
+        for row in reversed(range(self._row)):
+            if self._board[row][col] == self._empty_cell:
+                return row
+
+        return -1
 
 
     def insert_piece(self, col: int, piece: str) -> bool:
