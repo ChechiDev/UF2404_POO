@@ -1,7 +1,8 @@
 import os
 import re
 import platform as plat
-from board import Board
+from time import sleep
+from constants import EMPTY_CELL, COLUMNS, PLAYER_PIECE, CPU_PIECE
 
 
 
@@ -18,7 +19,7 @@ class Utils:
             os.system("clear")
 
 
-    def valid_column_num(player_name=None, piece=None) -> int:
+    def valid_column_num(board=None, player_name=None, piece=None) -> int:
         """
         Asks the user to select a valid column number for their move.
 
@@ -29,17 +30,24 @@ class Utils:
         Returns:
             int: The selected valid column number (1-7).
         """
-        pattern = r"^[1-7]$"
+        pattern = r"^\d{1,2}$"
 
         while True:
-            # Utils.clear_terminal()
-            value = input(f"\n{player_name} (X) Elige columna (1-7): ")
-            if re.match(pattern, value):
-                return int(value) - 1
+            value = input(f"\n{player_name} ({PLAYER_PIECE.strip()})\nChoose a valid column (1 - {COLUMNS}): ")
 
-            else:
-                print("Error!")
-                continue
+            if re.match(pattern, value):
+                num = int(value)
+
+                if 1 <= num <= COLUMNS:
+                    return num - 1
+
+            print("Wrong column...\nPlease select a valid column!")
+            sleep(2)
+
+            # Limpiamos terminal e imprimimos board:
+            if board is not None:
+                Utils.clear_terminal()
+                board.print_board()
 
 
     @staticmethod
@@ -66,13 +74,39 @@ class Utils:
         Returns:
             str: The selected difficulty level ('easy', 'normal', or 'hard').
         """
+        opts = ["Easy", "Normal", "Hard"]
+
         while True:
-            nivel = input(f"{name} elige la dificultad [easy] [normal] [hard]: ").strip().lower()
+            for idx, opt in enumerate(opts):
+                print(f"{idx + 1}. {opt}")
 
-            if nivel in ["easy", "normal", "hard"]:
-                return nivel
+            select = input("\nPlease, select an option: ").strip()
 
-            print("➜ [ERROR] Nivel incorrecto")
+            if select == "1":
+                return opts[0]
+
+            elif select == "2":
+                return opts[1]
+
+            elif select == "3":
+                return opts[2]
+
+            else:
+                print("Opción inválida. Inténtalo de nuevo.")
+
+
+    @staticmethod
+    def show_cpu_turn(board):
+        """
+        Clears the terminal, prints the CPU turn message, and displays the current board.
+
+        Args:
+            board (Board): The current game board to display.
+        """
+        Utils.clear_terminal()
+        board.print_board()
+        print(f"\nCPU ({CPU_PIECE.strip()}) Turn\nChoosing a valid column...")
+        sleep(1.5)
 
 
     def check_winner(board: list, piece: str) -> bool:
@@ -136,7 +170,7 @@ class Utils:
     def check_is_full(board: list) -> bool:
 
         for col in range(len(board[0])):
-            if board[0][col] == ".   ":
+            if board[0][col] == EMPTY_CELL:
                 return False
 
             return True

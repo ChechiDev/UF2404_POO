@@ -1,4 +1,3 @@
-import os
 from logic import Logic
 from utils import Utils
 
@@ -25,7 +24,7 @@ class HumanPlayer(Player):
             int: The selected valid column index.
         """
         while True:
-            col = Utils.valid_column_num(self._name, self._piece)
+            col = Utils.valid_column_num(board, self._name, self._piece)
 
             if board.is_valid_column(col):
                 return col
