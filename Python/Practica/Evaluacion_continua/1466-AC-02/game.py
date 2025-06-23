@@ -34,8 +34,8 @@ def game():
         elif cpu.difficulty == "normal":
             cpu_col = cpu.play_normal(board, player_piece, cpu_piece)
 
-        # elif cpu.difficulty == "hard":
-        #     cpu_col = cpu.play_hard(board, player.piece, cpu.piece)
+        elif cpu.difficulty == "hard":
+            cpu_col = cpu.play_hard(board, player_piece, cpu_piece)
 
         else:
             cpu_col = cpu.play_easy(board, cpu_piece)

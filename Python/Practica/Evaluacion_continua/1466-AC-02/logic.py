@@ -5,6 +5,7 @@ from time import sleep
 import random
 
 
+
 class Logic:
     def __init__(self, board):
         self._board = board
@@ -25,7 +26,46 @@ class Logic:
         return random.choice(valid_col)
 
 
-    def normal(self, player_piece, cpu_piece):
+    def normal(self, board, player_piece, cpu_piece):
+        """
+
+        """
+
+        valid_col = board.get_valid_columns()
+
+        # CPU intenta ganar:
+        for col in valid_col:
+            row = board.get_available_row(col)
+
+            if row != -1 or row is not None:
+                cpu_board_copy = self._board.get_board_copy()
+                cpu_board = Board(board._row, board._col)
+                cpu_board._board = cpu_board_copy
+                cpu_board._board[row][col] = cpu_piece
+
+                if Utils.check_winner(cpu_board, cpu_piece):
+                    return col
+
+
+        # CPU bloquea a player:
+        for col in valid_col:
+            row = board.get_available_row(col)
+
+            if row != -1 or row is not None:
+                cpu_board_copy = self._board.get_board_copy()
+                cpu_board = Board(board._row, board._col)
+                cpu_board._board = cpu_board_copy
+                cpu_board._board[row][col] = player_piece
+
+                if Utils.check_winner(cpu_board, player_piece):
+                    return col
+
+        # sinó jugada aleatoria:
+        return self.easy(self._board)
+
+
+
+    def hard(self, player_piece, cpu_piece):
         """
         Selects the best column for the CPU to play by evaluating possible moves and choosing the one that maximizes the number of connected CPU pieces.
 
@@ -42,15 +82,16 @@ class Logic:
 
 
         for col in valid_col:
-            row_copy = self._board.get_board_copy()
             row = self._board.get_available_row(col)
 
             if row is not None:
-                # La CPU puede ganar?
-                row_copy[row][col] = cpu_piece
+                # Player puede cpu? Simula
+                cpu_board_copy = self._board.get_board_copy()
+                cpu_board_copy[row][col] = cpu_piece
                 checked = []
 
-                cpu_connected = Utils.flood_fill_algorithm(row_copy, row, col, cpu_piece, checked)
+                cpu_connected = Utils.flood_fill_algorithm(cpu_board_copy, row, col, cpu_piece, checked)
+
                 if cpu_connected >= 4:
                     return col
 
@@ -58,18 +99,16 @@ class Logic:
                     max_connected_pieces = cpu_connected
                     best_col = col
 
-
-                # Player puede ganar?
-                row_copy[row][col] = player_piece
+                # Player puede ganar? Simula
+                player_board_copy = self._board.get_board_copy()
+                player_board_copy[row][col] = player_piece
                 checked = []
-                player_connected = Utils.flood_fill_algorithm(row_copy, row, col, player_piece, checked)
+
+                player_connected = Utils.flood_fill_algorithm(player_board_copy, row, col, player_piece, checked)
+
                 if player_connected >= 4:
                     return col
 
 
         # sinó jugada aleatoria:
         return self.easy(self._board)
-
-
-    def hard(slef):
-        pass

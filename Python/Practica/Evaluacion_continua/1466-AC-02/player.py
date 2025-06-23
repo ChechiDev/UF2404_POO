@@ -59,7 +59,17 @@ class CPUPlayer(Player):
 
     def play_normal(self, board, player_piece, cpu_piece):
         """
-        CPU's move in normal mode by evaluating possible moves and selecting the best option.
+
+        """
+        logic = Logic(board)
+        col = logic.normal(board, player_piece, cpu_piece)
+
+        return col
+
+
+    def play_hard(self, board, player_piece, cpu_piece):
+        """
+        CPU's move by evaluating possible moves and selecting the best option.
 
         Args:
             board (Board): The current game board.
@@ -70,13 +80,9 @@ class CPUPlayer(Player):
             int: The selected column index for the move.
         """
         logic = Logic(board)
-        col = logic.normal(player_piece, cpu_piece)
+        col = logic.hard(player_piece, cpu_piece)
 
         return col
-
-
-    def play_hard(self, board, piece):
-        pass
 
 
     # COMING SOON

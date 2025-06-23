@@ -132,6 +132,16 @@ class Utils:
         return False
 
 
+    # Check empate:
+    def check_is_full(board: list) -> bool:
+
+        for col in range(len(board[0])):
+            if board[0][col] == ".   ":
+                return False
+
+            return True
+
+
     def flood_fill_algorithm(board, row, col, piece, checked=None):
         """
         Performs a flood fill algorithm starting from the specified cell to find connected pieces.
