@@ -58,7 +58,15 @@ class CPUPlayer(Player):
 
     def play_normal(self, board, player_piece, cpu_piece):
         """
+        CPU's move in normal mode by trying to win, block the player, or pick randomly.
 
+        Args:
+            board (Board): The current game board.
+            player_piece (str): The symbol representing the player's piece.
+            cpu_piece (str): The symbol representing the CPU's piece.
+
+        Returns:
+            int: The selected column index for the move.
         """
         logic = Logic(board)
         col = logic.normal(board, player_piece, cpu_piece)

@@ -28,7 +28,17 @@ class Logic:
 
     def normal(self, board, player_piece, cpu_piece):
         """
+        Chooses a column for the CPU in normal mode.
 
+        Tries to win, then block the player, otherwise picks randomly.
+
+        Args:
+            board (Board): Current game board.
+            player_piece (str): Player's piece symbol.
+            cpu_piece (str): CPU's piece symbol.
+
+        Returns:
+            int: Selected column index.
         """
         Utils.show_cpu_turn(board)
         valid_col = board.get_valid_columns()
@@ -121,30 +131,3 @@ class Logic:
 
         # sinó jugada aleatoria:
         return self.easy(self._board)
-
-
-# DEBBUG:
-if __name__ == "__main__":
-    from constants import EMPTY_CELL, PLAYER_PIECE, CPU_PIECE
-    Utils.clear_terminal()
-
-    # board hipotetico
-    # simulo un board para debug:
-    board = Board(6, 7)
-    board._board = [
-        [EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL],
-        [EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL],
-        [EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, PLAYER_PIECE],
-        [EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, CPU_PIECE],
-        [EMPTY_CELL, EMPTY_CELL, CPU_PIECE, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, CPU_PIECE],
-        [EMPTY_CELL, EMPTY_CELL, PLAYER_PIECE, PLAYER_PIECE, PLAYER_PIECE, EMPTY_CELL, CPU_PIECE]
-    ]
-
-    logic = Logic(board)
-    player_piece = PLAYER_PIECE
-    cpu_piece = CPU_PIECE
-
-
-    # Llama al método hard y muestra el resultado
-    col = logic.hard(player_piece, cpu_piece)
-    print(f"Columna a bloquear o ganar: {col + 1}")

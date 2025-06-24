@@ -52,6 +52,9 @@ class Menu:
 
 
     def footer(self):
+        """
+        Prints a footer for the menu
+        """
         print("\n" * 2)
         print(self._header_pattern * self._header_width)
 
@@ -92,7 +95,7 @@ class Menu:
 
                 return self._first_player_name, self._difficulty
 
-
+            # COMMING SOON:
             # elif select == "2":
             #     self._utils.clear_terminal()
             #     print("Player 1: ")
@@ -112,8 +115,3 @@ class Menu:
             else:
                 print("Wrong option...")
                 sleep(1)
-
-
-if __name__ == "__main__":
-    menu = Menu(first_player=None, second_player=None)
-    menu.select_players()

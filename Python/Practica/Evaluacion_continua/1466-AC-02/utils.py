@@ -19,11 +19,6 @@ class Utils:
             os.system("clear")
 
 
-    @staticmethod
-    def valid_menu_opt():
-        pass
-
-
     # @staticmethod
     def choose_difficulty(self, name):
         """
@@ -37,7 +32,7 @@ class Utils:
         """
         from menu import Menu
 
-        opts = ["Easy", "Normal", "Hard"]
+        opts = ["Easy", "Normal", "Hard", "Awesome (comming soon)"]
 
         while True:
             Utils.clear_terminal()
@@ -64,7 +59,6 @@ class Utils:
 
             elif select == "0":
                 return "exit"
-
             else:
                 print("Wrong option...")
                 sleep(1)
@@ -97,15 +91,13 @@ class Utils:
                 if 1 <= num <= COLUMNS:
                     return num - 1
 
-            menu.footer()
-            print("Wrong column...\nPlease select a valid column!")
+            print("Wrong column...")
             sleep(1)
 
             # Limpiamos terminal e imprimimos board:
             if board is not None:
                 Utils.clear_terminal()
                 board.print_board()
-
 
     @staticmethod
     def show_cpu_turn(board):
@@ -181,7 +173,6 @@ class Utils:
                     return True
 
         return False
-
 
     # Check empate:
     def check_is_full(board: list) -> bool:
