@@ -33,7 +33,7 @@ class Utils:
         pattern = r"^\d{1,2}$"
 
         while True:
-            value = input(f"\n{player_name} ({PLAYER_PIECE.strip()})\nChoose a valid column (1 - {COLUMNS}): ")
+            value = input(f"\n{player_name} ({PLAYER_PIECE.strip()}) Turn\nChoose a valid column (1 - {COLUMNS}): ")
 
             if re.match(pattern, value):
                 num = int(value)
@@ -42,7 +42,7 @@ class Utils:
                     return num - 1
 
             print("Wrong column...\nPlease select a valid column!")
-            sleep(2)
+            sleep(1)
 
             # Limpiamos terminal e imprimimos board:
             if board is not None:
@@ -77,6 +77,7 @@ class Utils:
         opts = ["Easy", "Normal", "Hard"]
 
         while True:
+            Utils.clear_terminal()
             for idx, opt in enumerate(opts):
                 print(f"{idx + 1}. {opt}")
 
@@ -93,6 +94,7 @@ class Utils:
 
             else:
                 print("Opción inválida. Inténtalo de nuevo.")
+                sleep(1)
 
 
     @staticmethod
@@ -106,7 +108,7 @@ class Utils:
         Utils.clear_terminal()
         board.print_board()
         print(f"\nCPU ({CPU_PIECE.strip()}) Turn\nChoosing a valid column...")
-        sleep(1.5)
+        sleep(1)
 
 
     def check_winner(board: list, piece: str) -> bool:
@@ -132,8 +134,7 @@ class Utils:
                     grid[r][c] == piece and
                     grid[r][c + 1] == piece and
                     grid[r][c + 2] == piece and
-                    grid[r][c + 3] == piece
-                ):
+                    grid[r][c + 3] == piece):
                     return True
 
         # Vertical

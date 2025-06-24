@@ -19,7 +19,7 @@ class Board:
 
     def create_board(self) -> list:
         """
-        Creates a board game grid\n
+        Creates a board game grid
         Args:
             x (int): ROWS
             y (int): COLUMNS
@@ -40,7 +40,7 @@ class Board:
 
     def print_board(self):
         """
-        Muestra el tablero por pantalla\n
+        Muestra el tablero por pantalla
         Args:
             (list): 2D List
 
@@ -52,7 +52,7 @@ class Board:
         print("   ".join(str(n + 1) for n in range(self._col)))
         # Board
         for row in self._board:
-            print("".join(row))
+            print("   ".join(row))
 
 
     def get_board_copy(self):

@@ -28,8 +28,15 @@ def game():
 
         Utils.clear_terminal()
         board.print_board()
+
+        # Check para victoria:
         if Utils.check_winner(board, player_piece):
             print(f"\n{player._name} wins!")
+            break
+
+        # Check para empate:
+        if Utils.check_is_full(board._board):
+            print("Draw! The board is full.")
             break
 
         # Turno de la CPU:
@@ -47,11 +54,18 @@ def game():
             cpu_col = cpu.play_easy(board, cpu_piece)
 
         board.insert_piece(cpu_col, cpu_piece)
-        board.print_board()
 
         Utils.show_cpu_turn(board)
+        board.print_board()
+
+        # Check para victoria:
         if Utils.check_winner(board, cpu_piece):
             print(f"{cpu._name} wins!")
+            break
+
+        # Check para empate:
+        if Utils.check_is_full(board._board):
+            print("Draw! The board is full.")
             break
 
 
