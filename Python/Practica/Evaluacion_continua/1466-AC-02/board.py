@@ -1,4 +1,5 @@
 from utils import Utils
+
 from constants import EMPTY_CELL
 
 class Board:
@@ -47,12 +48,19 @@ class Board:
         Returns:
             (list): 2D array rendered in CMD.
         """
+        from menu import Menu
+        menu = Menu()
+        menu.header()
 
         # Board header:
-        print("   ".join(str(n + 1) for n in range(self._col)))
+        print("\n")
+        board_header = "   ".join(str(n + 1) for n in range(self._col))
+        print(menu.center(board_header))
+
+
         # Board
         for row in self._board:
-            print("   ".join(row))
+            print(menu.center("   ".join(row)))
 
 
     def get_board_copy(self):

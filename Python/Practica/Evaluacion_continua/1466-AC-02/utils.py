@@ -19,6 +19,57 @@ class Utils:
             os.system("clear")
 
 
+    @staticmethod
+    def valid_menu_opt():
+        pass
+
+
+    # @staticmethod
+    def choose_difficulty(self, name):
+        """
+        Asks the user to select a difficulty level for the game.
+
+        Args:
+            name (str): The name of the player.
+
+        Returns:
+            str: The selected difficulty level ('easy', 'normal', or 'hard').
+        """
+        from menu import Menu
+
+        opts = ["Easy", "Normal", "Hard"]
+
+        while True:
+            Utils.clear_terminal()
+
+            menu = Menu()
+            menu.header()
+
+            for idx, opt in enumerate(opts):
+                print(f"{idx + 1}. {opt}")
+
+            print("\n0. Exit")
+
+            menu.footer()
+            select = input(f"{name}, Please select a difficulty game mode: ").strip()
+
+            if select == "1":
+                return opts[0]
+
+            elif select == "2":
+                return opts[1]
+
+            elif select == "3":
+                return opts[2]
+
+            elif select == "0":
+                return "exit"
+
+            else:
+                print("Wrong option...")
+                sleep(1)
+
+
     def valid_column_num(board=None, player_name=None, piece=None) -> int:
         """
         Asks the user to select a valid column number for their move.
@@ -30,10 +81,15 @@ class Utils:
         Returns:
             int: The selected valid column number (1-7).
         """
+        from menu import Menu
+
+        menu = Menu()
+
         pattern = r"^\d{1,2}$"
 
         while True:
-            value = input(f"\n{player_name} ({PLAYER_PIECE.strip()}) Turn\nChoose a valid column (1 - {COLUMNS}): ")
+            menu.footer()
+            value = input(f"{player_name} ({PLAYER_PIECE.strip()}) Turn\nChoose a valid column (1 - {COLUMNS}): ")
 
             if re.match(pattern, value):
                 num = int(value)
@@ -41,6 +97,7 @@ class Utils:
                 if 1 <= num <= COLUMNS:
                     return num - 1
 
+            menu.footer()
             print("Wrong column...\nPlease select a valid column!")
             sleep(1)
 
@@ -51,53 +108,6 @@ class Utils:
 
 
     @staticmethod
-    def choose_name() -> str:
-        """
-        Asks the user to enter their name.
-
-        Returns:
-            str: The entered player name.
-        """
-        name = input("\nPlease, enter your name: ").strip()
-
-        return name
-
-
-    @staticmethod
-    def choose_difficulty(name):
-        """
-        Asks the user to select a difficulty level for the game.
-
-        Args:
-            name (str): The name of the player.
-
-        Returns:
-            str: The selected difficulty level ('easy', 'normal', or 'hard').
-        """
-        opts = ["Easy", "Normal", "Hard"]
-
-        while True:
-            Utils.clear_terminal()
-            for idx, opt in enumerate(opts):
-                print(f"{idx + 1}. {opt}")
-
-            select = input("\nPlease, select an option: ").strip()
-
-            if select == "1":
-                return opts[0]
-
-            elif select == "2":
-                return opts[1]
-
-            elif select == "3":
-                return opts[2]
-
-            else:
-                print("Opción inválida. Inténtalo de nuevo.")
-                sleep(1)
-
-
-    @staticmethod
     def show_cpu_turn(board):
         """
         Clears the terminal, prints the CPU turn message, and displays the current board.
@@ -105,9 +115,15 @@ class Utils:
         Args:
             board (Board): The current game board to display.
         """
+        from menu import Menu
+
+        menu = Menu()
+
         Utils.clear_terminal()
         board.print_board()
-        print(f"\nCPU ({CPU_PIECE.strip()}) Turn\nChoosing a valid column...")
+
+        menu.footer()
+        print(f"CPU ({CPU_PIECE.strip()}) Turn\nChoosing a valid column...")
         sleep(1)
 
 

@@ -39,7 +39,6 @@ class Logic:
             for col in valid_col:
                 row = board.get_available_row(col)
 
-
                 if row != -1:
                     # Copia board para simular:
                     cpu_board_copy = board.get_board_copy()
@@ -71,14 +70,13 @@ class Logic:
         valid_col = self._board.get_valid_columns()
         best_col = None
         max_connected_pieces = 0
-
+        block_cols = []
 
         for col in valid_col:
             row = self._board.get_available_row(col)
 
-            if row is not None:
-                # Player puede cpu? Simula
-                # Copia board para simulación:
+            if row != -1:
+                # Simula jugada de la CPU
                 cpu_board_copy = self._board.get_board_copy()
                 cpu_board_copy[row][col] = cpu_piece
                 checked = []  # guardamos las posiciones vistas
@@ -104,27 +102,18 @@ class Logic:
                 player_board_copy = self._board.get_board_copy()
                 player_row = self._board.get_available_row(col)
 
-                if player_row is not None:
+                if player_row != -1:
                     player_board_copy[player_row][col] = player_piece
 
                     temp_player_board = Board(self._board._row, self._board._col)
                     temp_player_board._board = player_board_copy
 
                     if Utils.check_winner(temp_player_board, player_piece):
-                        return col
+                        block_cols.append(col)  # Guardamos las posibles columnas a bloquear
 
-                # checked = [] # guardamos las posiciones vistas
-                # player_connected = Utils.flood_fill_algorithm(player_board_copy, row, col, player_piece, checked)
-
-                # if player_connected >= 4:
-                #     # Bloquea victoria del player
-                #     return col
-
-                # elif player_connected == 3 and max_connected_pieces < 3:
-                #     # bloqueo de 3 al player
-                #     max_connected_pieces = 3
-                #     best_col = col
-
+        # Si encuentra 2, que bloquee una al azar
+        if block_cols:
+            return random.choice(block_cols)
 
         # Si no hay jugada ganadora, escoge la mejor conexion:
         if best_col is not None:
@@ -154,6 +143,7 @@ if __name__ == "__main__":
     logic = Logic(board)
     player_piece = PLAYER_PIECE
     cpu_piece = CPU_PIECE
+
 
     # Llama al método hard y muestra el resultado
     col = logic.hard(player_piece, cpu_piece)
