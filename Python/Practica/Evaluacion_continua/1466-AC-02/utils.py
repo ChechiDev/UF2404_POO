@@ -184,7 +184,7 @@ class Utils:
             return True
 
 
-    def flood_fill_algorithm(board, row, col, piece, checked=None):
+    def flood_fill_algorithm(board: list, row: int, col: int, piece: str, checked: set=None) -> int:
         """
         Performs a flood fill algorithm starting from the specified cell to find connected pieces.
 
