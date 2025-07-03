@@ -91,6 +91,7 @@ def main():
 
     else:
         print("Uso: python desafio.py <ancho> <alto>")
+        
 
 if __name__ == "__main__":
     rectangle() # Los args se piden por input()

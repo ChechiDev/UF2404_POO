@@ -35,14 +35,14 @@ def print_comb():
     n3 = 0
 
     for n1 in range(10):
-        comb.append(str(n1))
+        # comb.append(str(n1))
 
         for n2 in range(n1 + 1, 10):
-            if n2 not in comb:
-                comb.append(str(n1) + str(n2))
+            # if n2 not in comb:
+                # comb.append(str(n1) + str(n2))
 
                 for n3 in range(n2 + 1, 10):
-                    if n3 not in comb:
+                    # if n3 not in comb:
                         comb.append(str(n1) + str(n2) + str(n3))
 
     print(comb)

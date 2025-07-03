@@ -46,7 +46,7 @@ def game():
                 print("Draw! The board is full.")
                 break
 
-            # Turno de la CPU:
+            # Turno de la CPU:1
             # check de dificultad
 
             if cpu.difficulty == "exit":
