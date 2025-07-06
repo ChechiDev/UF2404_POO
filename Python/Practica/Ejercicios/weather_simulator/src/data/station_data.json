@@ -1,0 +1,20 @@
+{
+    "Barcelona": {
+        "name": "Barcelona",
+        "min_temp": 19,
+        "med_temp": 23,
+        "max_temp": 29
+    },
+    "Madrid": {
+        "name": "Madrid",
+        "min_temp": 19,
+        "med_temp": 23,
+        "max_temp": 30
+    },
+    "Valencia": {
+        "name": "Valencia",
+        "min_temp": 15,
+        "med_temp": 24,
+        "max_temp": 33
+    }
+}
