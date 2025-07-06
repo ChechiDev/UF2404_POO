@@ -5,6 +5,7 @@ Teoria/
 # Ignorar entornos virtuales
 weather_simulator/venv/
 env/
+venv/
 
 # Ignorar archivos temporales de Python
 __pycache__/
