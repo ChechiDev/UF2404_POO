@@ -1,3 +1,13 @@
 # Carpeta con la teoría de la asignatura
 Teoria/
-src/
+# src/
+
+# Ignorar entornos virtuales
+weather_simulator/venv/
+env/
+
+# Ignorar archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
