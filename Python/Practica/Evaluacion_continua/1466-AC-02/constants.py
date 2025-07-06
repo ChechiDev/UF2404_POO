@@ -1,5 +1,0 @@
-ROWS = 6
-COLUMNS = 7
-PLAYER_PIECE = "X"
-CPU_PIECE = "O"
-EMPTY_CELL = "."
