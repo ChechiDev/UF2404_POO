@@ -1,15 +1,15 @@
 import numpy as np
-from .utils import DictBuilder, JsonBuilder
+# from .utils import DictBuilder, JsonBuilder
 
 class WeatherStation:
     def __init__(self, name: str) -> None:
         self._name = name
+        self._max_days = 30
         self._min_temp_range = np.random.randint(15, 20)
         self._max_temp_range = np.random.randint(30, 36)
         self._min_temp = self.min_temp()
         self._med_temp = self.med_temp()
         self._max_temp = self.max_temp()
-        self._max_days = 30
         self._temp_resume = {}
         self._cities_data = {}
 
@@ -61,3 +61,9 @@ class WeatherStation:
         self.JsonBuilder.write_json(self._cities_data)
 
         return data
+
+if __name__ == "__main__":
+    w_st = WeatherStation("barcelona")
+    print(w_st._min_temp)
+    print(w_st._med_temp)
+    print(w_st._max_temp)
