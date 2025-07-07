@@ -46,21 +46,6 @@ class WeatherStation:
         }
         return self._temp_resume
 
-    def add_city(self, name: str):
-        temp_array = self._temp_range()
-        data = {
-            "name": name,
-            "min_temp": int(np.min(temp_array)),
-            "med_temp": int(np.mean(temp_array)),
-            "max_temp": int(np.max(temp_array))
-        }
-
-        self._cities_data[name] = data
-
-        # Generamos el Json:
-        self.JsonBuilder.write_json(self._cities_data)
-
-        return data
 
 if __name__ == "__main__":
     w_st = WeatherStation("barcelona")

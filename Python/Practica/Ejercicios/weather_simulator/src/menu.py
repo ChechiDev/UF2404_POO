@@ -38,7 +38,7 @@ class BaseMenu:
         while True:
             Utils.clear_terminal()
             JsonBuilder.get_cities()
-            name = input("New weather station: ")
+            name = input("New weather station: ").strip().title()
 
             # Comprobamos si name existe
             if JsonBuilder.check_city(name):
