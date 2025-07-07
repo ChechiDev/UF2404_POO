@@ -8,9 +8,9 @@ import json
 class GraphGenerator:
     def __init__(self):
         self.data = JsonBuilder.read_json()
-        self.city_names = list(self.data.keys()) if self.data else []
+        self._city_names = list(self.data.keys()) if self.data else []
 
-        self.w_st = WeatherStation(self.city_names)
+        self.w_st = WeatherStation(self._city_names)
         self._days = self.w_st._max_days
 
 
@@ -18,7 +18,7 @@ class GraphGenerator:
 
         plot_result = {}
 
-        for city in self.city_names:
+        for city in self._city_names:
             city_key = self.data.get(city)
             # print(city_key)
             min_temp = []
@@ -42,7 +42,10 @@ class GraphGenerator:
 
 
     def plot_temp(self):
+
         data = self.get_data()
+        days_list = list(range(1, self._days + 1))
+        plt.figure(figsize=(22, 5))
 
         for city, temps in data.items():
             min_temp = temps[0]
@@ -50,6 +53,17 @@ class GraphGenerator:
             max_temp = temps[2]
             print(city, min_temp, med_temp, max_temp)
 
+            # data plot:
+            plt.plot(days_list, min_temp, label = f"{city} Min. temp.")
+            plt.plot(days_list, med_temp, label = f"{city} Med. temp.")
+            plt.plot(days_list, max_temp, label = f"{city} Max. temp.")
+
+        plt.title(f"Temperature comparison for the cities: {', '.join(self._city_names)}")
+        plt.xlabel(f"Temperature over {self._days} days")
+        plt.ylabel("Temperature (°C)")
+        plt.xticks(range(0, self._days + 1))
+        plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
+        plt.show()
 
 
 if __name__ == "__main__":
