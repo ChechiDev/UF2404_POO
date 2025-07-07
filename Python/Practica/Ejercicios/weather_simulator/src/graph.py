@@ -1,12 +1,13 @@
+# src.graph.py
+
 import matplotlib.pyplot as plt
 from .utils.json_builder import JsonBuilder
 from .weather import WeatherStation
-import os
-import pprint
-import json
 
 class GraphGenerator:
+    """ Generates and plots temperature data graphs for weather stations """
     def __init__(self):
+        """ Initializes the graph generator with city data and weather station """
         self.data = JsonBuilder.read_json()
         self._city_names = list(self.data.keys()) if self.data else []
 
@@ -15,19 +16,18 @@ class GraphGenerator:
 
 
     def get_data(self):
+        """ Get temperature data for all cities from JSON """
 
         plot_result = {}
 
         for city in self._city_names:
             city_key = self.data.get(city)
-            # print(city_key)
             min_temp = []
             med_temp = []
             max_temp = []
 
             for i in range(1,  self._days + 1):
                 data_day = city_key.get(f"Day-{i}")
-                # print(data_day)
 
                 # si hay datos...
                 if data_day:
@@ -36,27 +36,20 @@ class GraphGenerator:
                     max_temp.append(data_day.get("max_temp", 0))
 
             plot_result[city] = [min_temp, med_temp, max_temp]
-            # print(json.dumps(plot_result, indent=4))
 
         return plot_result
 
 
-    def plot_temp(self):
+    def plot_temp_type(self, temp_index: int, label_name: str):
+        """ Plots a specific type of temperature (min, med, max) for all cities """
 
         data = self.get_data()
         days_list = list(range(1, self._days + 1))
         plt.figure(figsize=(22, 5))
 
         for city, temps in data.items():
-            min_temp = temps[0]
-            med_temp = temps[1]
-            max_temp = temps[2]
-            print(city, min_temp, med_temp, max_temp)
-
-            # data plot:
-            plt.plot(days_list, min_temp, label = f"{city} Min. temp.")
-            plt.plot(days_list, med_temp, label = f"{city} Med. temp.")
-            plt.plot(days_list, max_temp, label = f"{city} Max. temp.")
+            temp = temps[temp_index]
+            plt.plot(days_list, temp, label=f"{city} {label_name}")
 
         plt.title(f"Temperature comparison for the cities: {', '.join(self._city_names)}")
         plt.xlabel(f"Temperature over {self._days} days")
@@ -66,10 +59,36 @@ class GraphGenerator:
         plt.show()
 
 
-if __name__ == "__main__":
-    os.system("cls")
-    # graph = GraphGenerator("Barcelona", days=30)
-    # graph.plot_temp()
-    g = GraphGenerator()
-    g.plot_temp()
-    # pprint.pprint(g.data)
+    def plot_min_temp(self):
+        """ Plots minimum temperature for all cities """
+        self.plot_temp_type(0, "Min. temp.")
+
+
+    def plot_med_temp(self):
+        """ Plots medium temperature for all cities """
+        self.plot_temp_type(1, "Med. temp.")
+
+
+    def plot_max_temp(self):
+        """ Plots maximum temperature for all cities """
+        self.plot_temp_type(2, "Max. temp.")
+
+
+    def plot_temp(self):
+        """ Plots all temperature types (min, med, max) for all cities """
+
+        data = self.get_data()
+        days_list = list(range(1, self._days + 1))
+        plt.figure(figsize=(22, 5))
+
+        for city, temps in data.items():
+            plt.plot(days_list, temps[0], label=f"{city} Min. temp.")
+            plt.plot(days_list, temps[1], label=f"{city} Med. temp.")
+            plt.plot(days_list, temps[2], label=f"{city} Max. temp.")
+
+        plt.title(f"Temperature comparison for the cities: {', '.join(self._city_names)}")
+        plt.xlabel(f"Temperature over {self._days} days")
+        plt.ylabel("Temperature (°C)")
+        plt.xticks(range(0, self._days + 1))
+        plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
+        plt.show()

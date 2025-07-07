@@ -4,12 +4,11 @@ import json
 FILENAME = "station_data.json"
 
 class JsonBuilder:
-    def __init__(self):
-        pass
+    """ Utility class for managing JSON data storage for weather stations """
 
     @staticmethod
     def create_data_folder():
-
+        """ Creates and returns the path to the data folder """
         # Obtenemos la ruta abs del folder src:
         # Bajamos 2 niveles de carpeta de .utils/src/ desde donde está este archivo
         src_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,6 +22,7 @@ class JsonBuilder:
 
     @staticmethod
     def read_json():
+        """ Reads and returns the JSON data from the data file """
 
         data_dir = JsonBuilder.create_data_folder()
         file_path = os.path.join(data_dir, FILENAME)
@@ -35,6 +35,8 @@ class JsonBuilder:
 
     @staticmethod
     def write_json(new_data):
+        """ Writes or updates the JSON data file with new data """
+
         data_dir = JsonBuilder.create_data_folder()
         file_path = os.path.join(data_dir, FILENAME)
 
@@ -57,6 +59,8 @@ class JsonBuilder:
 
     @staticmethod
     def clear_json():
+        """ Clears all data in the JSON data file """
+
         data_dir = JsonBuilder.create_data_folder()
         file_path = os.path.join(data_dir, FILENAME)
 
@@ -66,6 +70,8 @@ class JsonBuilder:
 
     @staticmethod
     def check_city(city_name):
+        """ Checks if a city exists in the JSON data file """
+
         data_dir = JsonBuilder.create_data_folder()
         file_path = os.path.join(data_dir, FILENAME)
 
@@ -75,6 +81,8 @@ class JsonBuilder:
 
     @staticmethod
     def get_cities():
+        """ Prints the list of cities stored in the JSON data file """
+
         data_dir = JsonBuilder.create_data_folder()
         file_path = os.path.join(data_dir, FILENAME)
 
@@ -82,7 +90,7 @@ class JsonBuilder:
             data = json.load(f)
 
             if not data:
-                print("No cities found...")
+                print("No data found...")
                 return
 
             for idx, k in enumerate(data):
