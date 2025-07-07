@@ -4,39 +4,34 @@ from .weather import WeatherStation
 import os
 
 class GraphGenerator:
-    def __init__(self, cityname: list = None, days: int = None):
-        self._city_name = cityname
+    def __init__(self, days: int = 0):
         self._days = days
-        self.data = None
+        self.data = JsonBuilder.read_json()
+        self.city_names = list(self.data.keys()) if self.data else []
 
-        self.w_st = WeatherStation(cityname)
+        self.w_st = WeatherStation(self.city_names)
+
+
+    def get_data(self, cities_name = None, days = None):
+
+        plot_result = {}
+
+        for city in self.city_names:
+            # print(self.data[city])
+            for day, temp in self.data[city].items():
+                print(f"{city}: min_temp = {temp['min_temp']}")
+
+
 
     def plot_temp(self):
-        data = JsonBuilder.read_json()
-        city_data = data.get(self._city_name)
-
-        if not data:
-            print(f"No data found...")
-            return
-
-        min_temp = []
-        med_temp = []
-        max_temp = []
-
-        for i in range(1, self._days + 1):
-            day_data = city_data.get(f"Day-{i}")
-            if day_data:
-                min_temp.append(day_data.get("min_temp", 0))
-                med_temp.append(day_data.get("med_temp", 0))
-                max_temp.append(day_data.get("max_temp", 0))
-
-        print("min: ", min_temp)
-        print("med: ", med_temp)
-        print("max: ", max_temp)
-
+        pass
 
 
 if __name__ == "__main__":
+    import pprint
     os.system("cls")
-    graph = GraphGenerator("Barcelona", days=30)
-    graph.plot_temp()
+    # graph = GraphGenerator("Barcelona", days=30)
+    # graph.plot_temp()
+    g = GraphGenerator()
+    print(g.get_data())
+    # pprint.pprint(g.data)

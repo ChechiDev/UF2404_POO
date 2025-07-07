@@ -1,10 +1,12 @@
-from .weather import WeatherStation
-from .utils import (
+from src import (
     Utils,
     Validation,
+    WeatherStation,
+    GraphGenerator,
     DictBuilder,
     JsonBuilder
 )
+
 from time import sleep
 
 class BaseMenu:
@@ -31,7 +33,6 @@ class BaseMenu:
 
 
     def new_weather_st(self):
-
         # Limpiamos JSON para nueva búsqueda:
         JsonBuilder.clear_json()
 
