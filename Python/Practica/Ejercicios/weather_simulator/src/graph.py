@@ -6,18 +6,15 @@ import pprint
 import json
 
 class GraphGenerator:
-    def __init__(self, days: int = 0):
-        self._days = days
+    def __init__(self):
         self.data = JsonBuilder.read_json()
         self.city_names = list(self.data.keys()) if self.data else []
 
         self.w_st = WeatherStation(self.city_names)
+        self._days = self.w_st._max_days
 
 
-    def get_data(self, cities_name = None, days = None):
-
-        if days is None:
-            days = self.w_st._max_days
+    def get_data(self):
 
         plot_result = {}
 
@@ -28,7 +25,7 @@ class GraphGenerator:
             med_temp = []
             max_temp = []
 
-            for i in range(1, days + 1):
+            for i in range(1,  self._days + 1):
                 data_day = city_key.get(f"Day-{i}")
                 # print(data_day)
 
@@ -46,7 +43,13 @@ class GraphGenerator:
 
     def plot_temp(self):
         data = self.get_data()
-        print(data)
+
+        for city, temps in data.items():
+            min_temp = temps[0]
+            med_temp = temps[1]
+            max_temp = temps[2]
+            print(city, min_temp, med_temp, max_temp)
+
 
 
 if __name__ == "__main__":
