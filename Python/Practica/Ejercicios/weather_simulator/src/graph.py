@@ -45,7 +45,7 @@ class GraphGenerator:
 
         data = self.get_data()
         days_list = list(range(1, self._days + 1))
-        plt.figure(figsize=(22, 5))
+        plt.figure(figsize=(15, 5))
 
         for city, temps in data.items():
             temp = temps[temp_index]
@@ -79,7 +79,7 @@ class GraphGenerator:
 
         data = self.get_data()
         days_list = list(range(1, self._days + 1))
-        plt.figure(figsize=(22, 5))
+        plt.figure(figsize=(15, 5))
 
         for city, temps in data.items():
             plt.plot(days_list, temps[0], label=f"{city} Min. temp.")

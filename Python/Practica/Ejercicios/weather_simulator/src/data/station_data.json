@@ -1,306 +1,154 @@
 {
-    "Madrid": {
+    "Barcelona": {
         "Day-1": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-2": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 31
+            "min_temp": 15,
+            "med_temp": 21,
+            "max_temp": 30
         },
         "Day-3": {
-            "min_temp": 17,
-            "med_temp": 23,
-            "max_temp": 32
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-4": {
-            "min_temp": 18,
-            "med_temp": 25,
-            "max_temp": 32
+            "min_temp": 15,
+            "med_temp": 23,
+            "max_temp": 30
         },
         "Day-5": {
-            "min_temp": 17,
-            "med_temp": 23,
-            "max_temp": 32
+            "min_temp": 15,
+            "med_temp": 21,
+            "max_temp": 30
         },
         "Day-6": {
-            "min_temp": 18,
-            "med_temp": 26,
-            "max_temp": 31
+            "min_temp": 15,
+            "med_temp": 21,
+            "max_temp": 30
         },
         "Day-7": {
-            "min_temp": 17,
+            "min_temp": 15,
             "med_temp": 23,
-            "max_temp": 32
+            "max_temp": 30
         },
         "Day-8": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-9": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-10": {
-            "min_temp": 17,
-            "med_temp": 22,
-            "max_temp": 32
-        },
-        "Day-11": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-12": {
-            "min_temp": 18,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-13": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-14": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 31
-        },
-        "Day-15": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-16": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-17": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 31
-        },
-        "Day-18": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-19": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-20": {
-            "min_temp": 18,
-            "med_temp": 25,
-            "max_temp": 32
-        },
-        "Day-21": {
-            "min_temp": 18,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-22": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 31
-        },
-        "Day-23": {
-            "min_temp": 17,
-            "med_temp": 26,
-            "max_temp": 31
-        },
-        "Day-24": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-25": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 32
-        },
-        "Day-26": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 31
-        },
-        "Day-27": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-28": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 32
-        },
-        "Day-29": {
-            "min_temp": 17,
-            "med_temp": 24,
-            "max_temp": 32
-        },
-        "Day-30": {
-            "min_temp": 17,
-            "med_temp": 25,
-            "max_temp": 31
-        }
-    },
-    "Valencia": {
-        "Day-1": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
-        },
-        "Day-2": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 28
-        },
-        "Day-3": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
-        },
-        "Day-4": {
-            "min_temp": 17,
-            "med_temp": 22,
-            "max_temp": 29
-        },
-        "Day-5": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
-        },
-        "Day-6": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
-        },
-        "Day-7": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
-        },
-        "Day-8": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
-        },
-        "Day-9": {
-            "min_temp": 16,
+            "min_temp": 15,
             "med_temp": 22,
             "max_temp": 29
         },
         "Day-10": {
-            "min_temp": 16,
+            "min_temp": 15,
             "med_temp": 21,
-            "max_temp": 29
+            "max_temp": 30
         },
         "Day-11": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-12": {
-            "min_temp": 16,
+            "min_temp": 15,
             "med_temp": 21,
-            "max_temp": 29
+            "max_temp": 30
         },
         "Day-13": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 21,
+            "max_temp": 30
         },
         "Day-14": {
             "min_temp": 16,
             "med_temp": 22,
-            "max_temp": 29
+            "max_temp": 30
         },
         "Day-15": {
-            "min_temp": 16,
+            "min_temp": 15,
             "med_temp": 22,
-            "max_temp": 29
+            "max_temp": 30
         },
         "Day-16": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 23,
+            "max_temp": 30
         },
         "Day-17": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-18": {
-            "min_temp": 16,
-            "med_temp": 23,
+            "min_temp": 15,
+            "med_temp": 22,
             "max_temp": 29
         },
         "Day-19": {
-            "min_temp": 16,
+            "min_temp": 15,
             "med_temp": 21,
-            "max_temp": 29
+            "max_temp": 30
         },
         "Day-20": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 23,
+            "max_temp": 30
         },
         "Day-21": {
             "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-22": {
-            "min_temp": 17,
-            "med_temp": 21,
-            "max_temp": 28
+            "min_temp": 15,
+            "med_temp": 23,
+            "max_temp": 30
         },
         "Day-23": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 28
+            "min_temp": 15,
+            "med_temp": 23,
+            "max_temp": 29
         },
         "Day-24": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 23,
+            "max_temp": 30
         },
         "Day-25": {
             "min_temp": 16,
-            "med_temp": 24,
-            "max_temp": 29
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-26": {
-            "min_temp": 16,
-            "med_temp": 23,
-            "max_temp": 28
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-27": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 21,
+            "max_temp": 30
         },
         "Day-28": {
-            "min_temp": 16,
-            "med_temp": 21,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 22,
+            "max_temp": 30
         },
         "Day-29": {
-            "min_temp": 16,
+            "min_temp": 15,
             "med_temp": 22,
             "max_temp": 29
         },
         "Day-30": {
-            "min_temp": 16,
-            "med_temp": 22,
-            "max_temp": 29
+            "min_temp": 15,
+            "med_temp": 21,
+            "max_temp": 30
         }
     }
 }

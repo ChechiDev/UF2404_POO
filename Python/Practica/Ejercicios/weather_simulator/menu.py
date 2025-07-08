@@ -56,13 +56,13 @@ class BaseMenu:
 
 
 class ExitMenu(BaseMenu):
-        def exit(self):
-            """ Shows the exit menu """
+    def exit(self):
+        """ Shows the exit menu """
 
-            self.ut.clear_terminal()
-            self.header()
-            print(f"Thank you for visiting us!")
-            self.separator()
+        self.ut.clear_terminal()
+        self.header()
+        print(f"Thank you for visiting us!")
+        self.separator()
 
 
 class LandingMenu(BaseMenu):
@@ -74,7 +74,7 @@ class LandingMenu(BaseMenu):
         opts = ["Add new Weather station to temperature analysis"]
 
         while True:
-            Utils.clear_terminal()
+            self.ut.clear_terminal()
             self.header()
 
             for idx, opt in enumerate(opts):
@@ -92,7 +92,7 @@ class LandingMenu(BaseMenu):
 
             else:
                 print("Wrong option...")
-                sleep(2)
+                sleep(1)
 
 
     def new_weather_st(self):
@@ -112,7 +112,7 @@ class LandingMenu(BaseMenu):
             # Comprobamos si name existe
             if JsonBuilder.check_city(name):
                 print(f"The station '{name}' already exists. Choose another name.")
-                sleep(2)
+                sleep(1)
                 continue
 
             if Validation.is_valid_name(name):
@@ -141,7 +141,7 @@ class LandingMenu(BaseMenu):
 
                     elif new_input in ["n", "no"]:
                         TempMenu().temp_Opt()
-                        break
+                        return
 
                     else:
                         print("Wrong option...")
@@ -154,7 +154,7 @@ class LandingMenu(BaseMenu):
                 JsonBuilder.get_cities()
                 self.separator()
                 print("Wrong station name...")
-                sleep(2)
+                sleep(1)
 
 
 class TempMenu(BaseMenu):
@@ -180,16 +180,13 @@ class TempMenu(BaseMenu):
                 SelectionTempMenu().selection_temp()
 
             elif user_opt == "0":
-                LandingMenu().main_menu()
+                ExitMenu().exit()
                 break
 
             else:
                 print("Wrong option...")
-                sleep(2)
+                sleep(1)
                 continue
-
-        self.separator()
-        input("Presiona Enter para continuar...")
 
 
 class SelectionTempMenu(BaseMenu):
@@ -231,8 +228,13 @@ class SelectionTempMenu(BaseMenu):
                 self.graph.plot_temp()
 
             elif user_opt == "0":
-                LandingMenu().main_menu()
+                ExitMenu().exit()
                 break
+
+            else:
+                print("Wrong option...")
+                sleep(1)
+                continue
 
 
 if __name__ == "__main__":
